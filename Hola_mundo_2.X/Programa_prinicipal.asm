@@ -1,0 +1,26 @@
+
+#include "p16f877a.inc"
+
+; CONFIG
+; __config 0xFF32
+ __CONFIG _FOSC_HS & _WDTE_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CPD_OFF & _WRT_OFF & _CP_OFF
+ 
+ 
+    ORG 0
+INICIO
+    BCF	    STATUS,RP1
+    BSF	    STATUS,RP0 ;BANCO 1
+    MOVLW   0X00; W = 0
+    MOVWF   TRISD; TRISD = W = 0
+            ; TRISD -> SALIDA  TRISD = 0
+    MOVLW   D'240'; 0XF0 = 240
+    MOVWF   TRISC
+	    ; TRISC -> ENTRADA TRISC = 1
+    BCF	    STATUS,RP0
+START
+    MOVLW   0XF0
+    MOVWF   PORTD
+    MOVLW   0X0A
+    MOVWF   PORTC   
+    GOTO    START
+    END
