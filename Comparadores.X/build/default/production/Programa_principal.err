@@ -1,0 +1,3 @@
+Warning[207] D:\ELECTRONICA\PIC16F877A - TUTORIAL\COMPARADORES.X\PROGRAMA_PRINCIPAL.ASM 7 : Found label after column 1. (NUMERO)
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\COMPARADORES.X\PROGRAMA_PRINCIPAL.ASM 13 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\COMPARADORES.X\PROGRAMA_PRINCIPAL.ASM 15 : Register in operand not in bank 0.  Ensure that bank bits are correct.
