@@ -1,0 +1,64 @@
+
+; PIC16F877A Configuration Bit Settings
+
+; Assembly source line config statements
+
+#include "p16f877a.inc"
+
+; CONFIG
+; __config 0xFF32
+ __CONFIG _FOSC_HS & _WDTE_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CPD_OFF & _WRT_OFF & _CP_OFF
+ 
+CBLOCK
+ CUENTA_INCR
+ ENDC
+
+	ORG	0
+INICIO
+	BSF	STATUS,RP0
+	BCF	STATUS,RP1
+	CLRF	TRISB
+	MOVLW	B'11111111'
+	MOVWF	TRISD
+	BCF	STATUS,RP0
+START
+	BTFSS	PORTD,7
+	GOTO	START
+	MOVF	CUENTA_INCR,W ; w = cuenta_incr
+	ANDLW	B'00001111' ;MASCARA 2 bits
+			    ; w and 3
+			    ; 11
+			    ; 10
+			    ; 10
+	CALL	DISPLAY
+	MOVWF	PORTB
+	CALL	Retardo_400ms
+	INCF	CUENTA_INCR,F
+	GOTO	START
+	
+DISPLAY
+	ADDWF	PCL,F
+;	DT 0X76,0X3F,0X38,0X77
+;	RETLW	0X76	;H
+;	RETLW	0X3F	;O
+;	RETLW	0X38	;L
+;	RETLW	0X77	;A
+	RETLW   3FH		;0
+	RETLW   06H		;1
+	RETLW   5BH		;2
+	RETLW   4FH		;3
+	RETLW   66H		;4
+	RETLW   6DH		;5
+	RETLW   7DH		;6
+	RETLW   07H		;7
+	RETLW   7FH		;8
+	RETLW   67H		;9
+	RETLW   77H		;A
+	RETLW   7CH		;B
+	RETLW   39H		;C
+	RETLW   5EH		;D
+	RETLW   79H		;E
+	RETLW   71H		;F 
+	
+include "Retardos.inc"
+	END
