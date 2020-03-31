@@ -1,0 +1,4 @@
+Message[313] D:\ELECTRONICA\PIC16F877A - TUTORIAL\TIMER1_CONTADOR.X\PROGRAMA_PRINCIPAL.ASM 12 : CBLOCK constants will start with a value of 0.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\TIMER1_CONTADOR.X\PROGRAMA_PRINCIPAL.ASM 24 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\TIMER1_CONTADOR.X\PROGRAMA_PRINCIPAL.ASM 25 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\TIMER1_CONTADOR.X\PROGRAMA_PRINCIPAL.ASM 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
