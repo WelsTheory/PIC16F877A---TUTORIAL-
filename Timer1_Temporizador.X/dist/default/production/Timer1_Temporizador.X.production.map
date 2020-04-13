@@ -1,0 +1,48 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Mon Apr 13 11:16:18 2020
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000004    program   0x00005a
+.config_2007_BUILD/DEFAULT/PRODUCTION/PROGRAM       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000004    0x000030      
+                            0x002007    0x002007      
+            49 out of 8454 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                  FIN_INT   0x00002f    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                    IGUAL   0x00002c    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                   INICIO   0x000005    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                 INT_TMR1   0x00001c    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                    MAYOR   0x00002a    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                    MENOR   0x000028    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                    START   0x000019    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   INICIO   0x000005    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                    START   0x000019    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                 INT_TMR1   0x00001c    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                    MENOR   0x000028    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                    MAYOR   0x00002a    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                    IGUAL   0x00002c    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+                  FIN_INT   0x00002f    program     static D:\Electronica\PIC16F877A - TUTORIAL\Timer1_Temporizador.X\Programa_principal.asm
+
+
