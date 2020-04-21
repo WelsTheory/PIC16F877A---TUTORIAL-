@@ -1,0 +1,70 @@
+
+; PIC16F877A Configuration Bit Settings
+
+; Assembly source line config statements
+
+#include "p16f877a.inc"
+
+; CONFIG
+; __config 0xFF32
+ __CONFIG _FOSC_HS & _WDTE_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CPD_OFF & _WRT_OFF & _CP_OFF
+
+;   PR2 = 77
+;   CCPR1L = 00111110
+;   CCPCON1 = 10
+;   CCP1CON -> SALIDA RC2
+;   PRESCALER = 16
+;   TMR2 ON
+;   CCP1 = PWM OPERACION
+
+	ORG	0
+	GOTO	INICIO
+	
+INICIO
+	BSF	STATUS,RP0
+	MOVLW	D'77'
+	MOVWF	PR2
+	BCF	TRISD,0
+	BCF	TRISC,2;RC2 
+	BCF	STATUS,RP0
+	MOVLW   B'00111110' ;80% MSB
+	MOVWF	CCPR1L
+	BSF	CCP1CON,5 ; 1 LSB 80%
+	BCF	CCP1CON,4 ; 0
+	BSF	T2CON,1 ;16 PRESCALER
+	BCF	T2CON,0
+	BSF	T2CON,2; TMR2 ON
+	BSF	CCP1CON,3; 11XX PWM
+	BSF	CCP1CON,2
+	BSF	CCP1CON,1
+	BSF	CCP1CON,0
+START
+	BSF	PORTD,0
+	GOTO	START
+
+
+	END
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
