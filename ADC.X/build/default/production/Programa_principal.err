@@ -1,0 +1,13 @@
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 17 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 18 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 19 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 21 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 22 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 24 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 25 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 40 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[205] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\PROGRAMA_PRINCIPAL.ASM 50 : Found directive in column 1. (include)
+Warning[205] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\RETARDO.INC 1 : Found directive in column 1. (CBLOCK)
+Warning[205] D:\ELECTRONICA\PIC16F877A - TUTORIAL\ADC.X\RETARDO.INC 5 : Found directive in column 1. (ENDC)
