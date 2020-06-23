@@ -1,0 +1,697 @@
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 
+                      00002 ; PIC16F877A Configuration Bit Settings
+                      00003 
+                      00004 ; Assembly source line config statements
+                      00005 
+                      00006 #include "p16f877a.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Mar 17 2019
+                      00005 ;  MPASM PIC16F877A processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2019 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00567         LIST
+                      00007 
+                      00008 ; CONFIG
+                      00009 ; __config 0xFF32
+2007   3F32           00010  __CONFIG _FOSC_HS & _WDTE_OFF & _PWRTE_ON & _BOREN_OFF & _LVP_OFF & _CPD_OFF & _WRT_OFF & _CP_OFF
+                      00011 
+Warning[205]: Found directive in column 1. (CBLOCK)
+                      00012 CBLOCK 0X30
+  00000030            00013 cuenta1
+  00000031            00014 cuenta2
+Warning[205]: Found directive in column 1. (ENDC)
+                      00015 ENDC
+                      00016  
+                      00017         ORG     0
+0000   2???           00018         GOTO    INICIO
+0001                  00019 INICIO
+0001   1683           00020         BSF     STATUS,RP0
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0002   0188           00021         CLRF    TRISD; SALIDA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0003   0187           00022         CLRF    TRISC; SALIDA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0004   1405           00023         BSF     TRISA,0; RA0 ENTRADA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0005   159F           00024         BSF     ADCON1,3
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0006   151F           00025         BSF     ADCON1,2
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0007   149F           00026         BSF     ADCON1,1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0008   101F           00027         BCF     ADCON1,0; 1110 -> RA0 AN0 = ANALOGO
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0009   171F           00028         BSF     ADCON1,6; FOSC/64
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000A   139F           00029         BCF     ADCON1,7; JUSTIFICACION IZQ
+000B   1283           00030         BCF     STATUS,RP0
+000C   179F           00031         BSF     ADCON0,7
+000D   131F           00032         BCF     ADCON0,6; FOSC/64
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000E   129F           00033         BCF     ADCON0,5
+000F   121F           00034         BCF     ADCON0,4
+0010   119F           00035         BCF     ADCON0,3; CANAL AN0
+0011   303E           00036         MOVLW   B'00111110' ;80% MSB
+0012   0095           00037         MOVWF   CCPR1L
+0013   1697           00038         BSF     CCP1CON,5 ; 1 LSB 80%
+0014   1217           00039         BCF     CCP1CON,4 ; 0
+0015   1492           00040         BSF     T2CON,1 ;16 PRESCALER
+0016   1012           00041         BCF     T2CON,0
+0017   1597           00042         BSF     CCP1CON,3; 1100 PWM
+0018   1517           00043         BSF     CCP1CON,2
+0019   1097           00044         BCF     CCP1CON,1
+001A   1017           00045         BCF     CCP1CON,0
+001B   1512           00046         BSF     T2CON,2; TMR2 ON
+001C   141F           00047         BSF     ADCON0,0; ADC ONc
+001D   0188           00048         CLRF    PORTD
+001E   0187           00049         CLRF    PORTC
+001F                  00050 START
+                      00051 ;       BSF     ADCON0,2; GO/DONE -> 1
+                      00052 ;ADC    BTFSC   ADCON0,2
+                      00053 ;       GOTO    ADC
+001F   0817           00054         MOVF    CCP1CON,W; 0010 1100
+0020   390C           00055         ANDLW   B'00001100'; 0000 1100
+0021   00B1           00056         MOVWF   cuenta2
+                      00057 ;       MOVF    ADRESH,W
+                      00058 ;       MOVWF   CCPR1L
+                      00059 ;       BSF     STATUS,RP0
+                      00060 ;       MOVF    ADRESL,W
+                      00061 ;       BCF     STATUS,RP0
+0022   30C0           00062         MOVLW   B'11000000'
+0023   00B0           00063         MOVWF   cuenta1; 11000000
+0024   0CB0           00064         RRF     cuenta1,F
+0025   0CB0           00065         RRF     cuenta1,F; 00110000
+0026   0830           00066         MOVF    cuenta1,W
+0027   07B1           00067         ADDWF   cuenta2,F; 
+0028   0831           00068         MOVF    cuenta2,W
+0029   0097           00069         MOVWF   CCP1CON
+                      00070 ;       MOVWF   PORTC
+                      00071 ;       CALL    Retardo_20ms 
+                      00072 ;       CALL    Retardo_20ms 
+                      00073 ;       CALL    Retardo_20ms 
+                      00074 ;       CALL    Retardo_20ms 
+                      00075 ;       CALL    Retardo_20ms 
+002A   2???           00076         GOTO    START
+                      00077         
+Warning[205]: Found directive in column 1. (include)
+                      00078 include "Retardo.inc"   
+Warning[205]: Found directive in column 1. (CBLOCK)
+                      00001 CBLOCK 0x20
+  00000020            00002  CUENTA
+  00000021            00003  CUENTA_2
+                      00004  
+Warning[205]: Found directive in column 1. (ENDC)
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00005 ENDC
+                      00006  
+002B                  00007 Retardo_400ms 
+002B   2???           00008     CALL    Retardo_20ms
+002C   2???           00009     CALL    Retardo_20ms
+002D   2???           00010     CALL    Retardo_20ms
+002E   2???           00011     CALL    Retardo_20ms
+002F   2???           00012     CALL    Retardo_20ms
+0030   2???           00013     CALL    Retardo_20ms
+0031   2???           00014     CALL    Retardo_20ms
+0032   2???           00015     CALL    Retardo_20ms
+0033   2???           00016     CALL    Retardo_20ms
+0034   2???           00017     CALL    Retardo_20ms 
+0035   2???           00018     CALL    Retardo_20ms
+0036   2???           00019     CALL    Retardo_20ms
+0037   2???           00020     CALL    Retardo_20ms
+0038   2???           00021     CALL    Retardo_20ms
+0039   2???           00022     CALL    Retardo_20ms
+003A   2???           00023     CALL    Retardo_20ms
+003B   2???           00024     CALL    Retardo_20ms
+003C   2???           00025     CALL    Retardo_20ms
+003D   2???           00026     CALL    Retardo_20ms
+003E   2???           00027     CALL    Retardo_20ms 
+003F   0008           00028     Return
+                      00029  
+                      00030 ; 5ms 
+0040                  00031 Retardo_20ms
+0040   30C8           00032     MOVLW   D'200'; 1cy -> k
+0041   2???           00033     GOTO    Retardos_ms ; 2cy 
+                      00034  
+                      00035 ; 5ms 
+0042                  00036 Retardo_5ms
+0042   3032           00037     MOVLW   D'50'; 1cy -> k
+0043   2???           00038     GOTO    Retardos_ms ; 2cy
+0044                  00039 Retardos_ms  
+0044   00A1           00040     MOVWF   CUENTA_2; cy
+0045                  00041 Retardo_Milis
+0045   30B4           00042     MOVLW   D'180' ; kcy -> x
+0046   00A0           00043     MOVWF   CUENTA ;kcy
+0047                  00044 BUCLE_milis
+0047   0000           00045     NOP
+0048   0BA0           00046     DECFSZ  CUENTA,F; kcy(x-1) + 2cy
+0049   2???           00047     GOTO    BUCLE   ; 2kcy(x-1)
+004A   0BA1           00048     DECFSZ  CUENTA_2,F ;cy(k-1) + 2cy 
+004B   2???           00049     GOTO    Retardo_Milis ;2cy(k-1)
+004C   0008           00050     RETURN  ;2cy   
+                      00051     
+                      00052     
+                      00053     
+                      00054 ; 1ms = 1000us
+004D                  00055 Retardo_1ms
+004D   0000           00056     NOP
+004E   0000           00057     NOP
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+004F   0000           00058     NOP
+0050   300A           00059     MOVLW   D'10'; 1cy -> k
+0051   2???           00060     GOTO    Retardos ; 2cy
+                      00061 
+0052                  00062 Retardo_200us
+0052   3003           00063     MOVLW   D'3'; 1cy -> k
+0053   2???           00064     GOTO    Retardos ; 2cy    
+                      00065    
+0054                  00066 Retardo_300us
+0054   3003           00067     MOVLW   D'3'; 1cy -> k
+0055   2???           00068     GOTO    Retardos ; 2cy
+                      00069     
+                      00070 ;500us 
+0056                  00071 Retardo_500us
+0056   3005           00072     MOVLW   D'5'; 1cy -> k
+0057                  00073 Retardos  
+0057   00A1           00074     MOVWF   CUENTA_2; cy
+0058                  00075 Retardo_Micros
+0058   30A5           00076     MOVLW   D'165' ; kcy -> x
+0059   00A0           00077     MOVWF   CUENTA ;kcy
+005A                  00078 BUCLE
+005A   0BA0           00079     DECFSZ  CUENTA,F; kcy(x-1) + 2cy
+005B   2???           00080     GOTO    BUCLE   ; 2kcy(x-1)
+005C   0BA1           00081     DECFSZ  CUENTA_2,F ;cy(k-1) + 2cy 
+005D   2???           00082     GOTO    Retardo_Micros ;2cy(k-1)
+005E   0008           00083     RETURN  ;2cy   
+                      00084 
+                      00085     
+                      00086     
+                      00087 ;100us
+005F                  00088 Retardo_100us; 8CY + 3XCY
+005F   30A4           00089     MOVLW   D'164'
+0060   0000           00090     NOP
+0061   2???           00091     GOTO    Retardo_micros
+                      00092 
+                      00093 ;50us
+0062                  00094 Retardo_50us        ;7cy + 3xcy  
+0062   3051           00095     MOVLW   D'81'
+0063   2???           00096     GOTO    Retardo_micros
+                      00097     
+                      00098 ;20us 
+0064                  00099 Retardo_20us;7CY + 3XCY     
+0064   301F           00100     MOVLW   D'31'
+0065   2???           00101     GOTO    Retardo_micros
+                      00102 
+                      00103 ;10us 
+0066                  00104 Retardo_10us;8CY + 3XCY
+0066   300E           00105     MOVLW   D'14'
+0067   0000           00106     NOP
+0068   2???           00107     GOTO    Retardo_micros  
+                      00108     
+                      00109 ;5us    
+0069                  00110 Retardo_5us;7CY + 3XCY
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0069   3006           00111     MOVLW   D'6'
+006A   2???           00112     GOTO    Retardo_micros
+006B                  00113 Retardo_micros
+006B   00A0           00114     MOVWF   CUENTA
+006C                  00115 Bucle
+006C   0BA0           00116     DECFSZ  CUENTA,F
+006D   2???           00117     GOTO    Bucle
+006E   0008           00118     RETURN 
+                      00119     
+                      00120 ;1us
+006F                  00121 Retardo_1us
+006F   0000           00122     NOP
+0070   0008           00123     RETURN
+                      00124 
+                      00125 
+                      00126 
+                      00127 
+                      00128 
+                      00129 
+                      00130 
+                      00131 
+                      00132 
+                      00133 
+                      00134 
+                      00079         
+3F32                  00080         END
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADCS2                             00000006
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRGH                              00000002
+BUCLE                             0000005A
+BUCLE_milis                       00000047
+Bucle                             0000006C
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+CHS1                              00000004
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CHS2                              00000005
+CIS                               00000003
+CKE                               00000006
+CKP                               00000004
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000009C
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+CUENTA                            00000020
+CUENTA_2                          00000021
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            0000009D
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+D_A                               00000005
+D_NOT_A                           00000005
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+GCEN                              00000007
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+GO_NOT_DONE                       00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IBF                               00000007
+IBOV                              00000005
+INDF                              00000000
+INICIO                            00000001
+INTCON                            0000000B
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OBF                               00000006
+OERR                              00000001
+OPTION_REG                        00000081
+P                                 00000004
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSPIE                             00000007
+PSPIF                             00000007
+PSPMODE                           00000004
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RA4                               00000004
+RA5                               00000005
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_NOT_W                           00000002
+R_W                               00000002
+Retardo_100us                     0000005F
+Retardo_10us                      00000066
+Retardo_1ms                       0000004D
+Retardo_1us                       0000006F
+Retardo_200us                     00000052
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+Retardo_20ms                      00000040
+Retardo_20us                      00000064
+Retardo_300us                     00000054
+Retardo_400ms                     0000002B
+Retardo_500us                     00000056
+Retardo_50us                      00000062
+Retardo_5ms                       00000042
+Retardo_5us                       00000069
+Retardo_Micros                    00000058
+Retardo_Milis                     00000045
+Retardo_micros                    0000006B
+Retardos                          00000057
+Retardos_ms                       00000044
+S                                 00000003
+SEN                               00000000
+SMP                               00000007
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+START                             0000001F
+STATUS                            00000003
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000088
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TX8_9                             00000006
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+W                                 00000000
+WCOL                              00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00001FFF
+_CP_OFF                           00003FFF
+_CP_ON                            00001FFF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FFD
+__16F877A                         00000001
+MPASM 5.84            PROGRAMA_PRINCIPAL.ASM   6-23-2020  17:42:56         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
+cuenta1                           00000030
+cuenta2                           00000031
+
+Errors   :     0
+Warnings :     5 reported,     0 suppressed
+Messages :     9 reported,     0 suppressed
+
+

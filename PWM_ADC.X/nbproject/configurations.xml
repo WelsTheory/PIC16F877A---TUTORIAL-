@@ -13,7 +13,8 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Programa_principal.asm</itemPath>
-      <itemPath>LCD_4bits.inc</itemPath>
+      <itemPath>Retardo.inc</itemPath>
+      <itemPath>Mi_Libreria.inc</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -37,8 +38,6 @@
       <packs>
         <pack name="PIC16Fxxx_DFP" vendor="Microchip" version="1.0.9"/>
       </packs>
-      <ScriptingSettings>
-      </ScriptingSettings>
       <compileType>
         <linkerTool>
           <linkerLibItems>
@@ -63,6 +62,20 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
+      <MPASMWIN-AS>
+        <property key="cross.reference.file" value=""/>
+        <property key="default.radix" value="HEX"/>
+        <property key="enable.case.sensitivity" value="true"/>
+        <property key="hex.output.format" value="INHX32"/>
+        <property key="preprocessor.macros" value=""/>
+        <property key="warning.level" value="0"/>
+      </MPASMWIN-AS>
+      <MPASMWIN-LD>
+        <property key="cod-file" value="false"/>
+        <property key="extra-lib-directories" value=""/>
+        <property key="hex-output-format" value="INHX32"/>
+        <property key="map-file" value="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"/>
+      </MPASMWIN-LD>
       <PICkit3PlatformTool>
         <property key="AutoSelectMemRanges" value="auto"/>
         <property key="Freeze Peripherals" value="true"/>
@@ -111,7 +124,7 @@
         <property key="codecoverage.outputfile" value=""/>
         <property key="oscillator.auxfrequency" value="120"/>
         <property key="oscillator.auxfrequencyunit" value="Mega"/>
-        <property key="oscillator.frequency" value="5"/>
+        <property key="oscillator.frequency" value="1"/>
         <property key="oscillator.frequencyunit" value="Mega"/>
         <property key="oscillator.rcfrequency" value="250"/>
         <property key="oscillator.rcfrequencyunit" value="Kilo"/>
@@ -530,6 +543,13 @@
                   value=""/>
         <property key="warningmessagebreakoptions.warningmessages" value="holdstate"/>
       </Simulator>
+      <mpasmsuite>
+        <property key="absolute-mode" value="false"/>
+        <property key="eeprom-width" value="8"/>
+        <property key="extended-mode" value="false"/>
+        <property key="extended-mode-mpasm" value="false"/>
+        <property key="extended-mode-mplink" value="false"/>
+      </mpasmsuite>
     </conf>
   </confs>
 </configurationDescriptor>
