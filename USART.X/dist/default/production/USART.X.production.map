@@ -1,0 +1,78 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Mon Sep 28 18:34:57 2020
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x0000c0
+                   .cinit    romdata   0x000060    program   0x000004
+.config_2007_BUILD/DEFAULT/PRODUCTION/PROGRAM       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000061      
+                            0x002007    0x002007      
+            99 out of 8454 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BUCLE   0x000049    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              BUCLE_milis   0x000036    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+                    Bucle   0x00005b    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+                   INICIO   0x000001    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Programa_principal.asm
+            Retardo_100us   0x00004e    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+             Retardo_10us   0x000055    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardo_1ms   0x00003c    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardo_1us   0x00005e    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_200us   0x000041    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+             Retardo_20ms   0x00002f    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+             Retardo_20us   0x000053    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_300us   0x000043    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_400ms   0x00001a    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_500us   0x000045    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+             Retardo_50us   0x000051    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardo_5ms   0x000031    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardo_5us   0x000058    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+           Retardo_Micros   0x000047    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_Milis   0x000034    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+           Retardo_micros   0x00005a    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+                 Retardos   0x000046    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardos_ms   0x000033    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+                    START   0x00000f    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Programa_principal.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   INICIO   0x000001    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Programa_principal.asm
+                    START   0x00000f    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Programa_principal.asm
+            Retardo_400ms   0x00001a    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+             Retardo_20ms   0x00002f    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardo_5ms   0x000031    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardos_ms   0x000033    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_Milis   0x000034    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              BUCLE_milis   0x000036    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardo_1ms   0x00003c    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_200us   0x000041    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_300us   0x000043    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_500us   0x000045    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+                 Retardos   0x000046    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+           Retardo_Micros   0x000047    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+                    BUCLE   0x000049    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+            Retardo_100us   0x00004e    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+             Retardo_50us   0x000051    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+             Retardo_20us   0x000053    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+             Retardo_10us   0x000055    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardo_5us   0x000058    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+           Retardo_micros   0x00005a    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+                    Bucle   0x00005b    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+              Retardo_1us   0x00005e    program     static D:\Electronica\PIC16F877A - TUTORIAL\USART.X\Retardo.inc
+
+
